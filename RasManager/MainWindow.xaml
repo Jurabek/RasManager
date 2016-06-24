@@ -1,0 +1,38 @@
+﻿<Window x:Class="RasManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RasManager"
+        xmlns:vm="clr-namespace:RasManager.ViewModels"
+        mc:Ignorable="d"
+        Title="Modem Manager" Height="350" Width="525">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Margin="10 0">Modems:</TextBlock>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding Entries}" SelectedItem="{Binding SelectedEntry}" x:Name="Entries">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </Grid>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Button Width="200" Height="50" Command="{Binding AutoConnectCommand}" x:Name="AutoConnectButton">Autoconnect</Button>
+                <Button Width="200" Height="50" Command="{Binding StopAutoConnectCommand}" x:Name="StopAutoConnectButton" Visibility="Collapsed">Stop</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
